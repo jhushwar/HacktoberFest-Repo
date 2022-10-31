@@ -29,7 +29,12 @@
     
     <div class="form">
         <form action="/update/{{task.id}}" method="POST">
+            <label>
+                Task name
+            </label>
             <input type="text" name="content" id="content" value="{{task.content}}">
+            <label>Priority</label>
+            <input type="number" name="priority" id="priority" value="{{task.priority}}">
             <input type="submit" value="Update">
         </form>
     </div>
