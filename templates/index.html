@@ -28,6 +28,7 @@
         {% else %}
         <table class="text-center">
             <tr>
+                <th>Priority</th>
                 <th>Task</th>
                 <th>Added</th>
                 <th>Actions</th>
@@ -42,8 +43,9 @@
                 crossorigin="anonymous"></script>
 
             <br><br>
-            {% for task in tasks|reverse %}
+            {% for task in tasks|sort(attribute='priority') %}
             <tr>
+                <td class="text-center">{{task.priority}}</td>
                 <td class="text-center">{{ task.content }}</td>
                 <td class="text-center">{{ task.date_created.date() }}</td>
                 <td>

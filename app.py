@@ -13,14 +13,16 @@ class Todo(db.Model):
     content = db.Column(db.String(200), nullable=False)
     completed = db.Column(db.Integer, default=0)
     date_created = db.Column(db.DateTime, default=datetime.utcnow)
-
+    priority = db.Column(db.Integer)
     def __ref__(self):
         return '<Task %r' % self.id
 
+    def sort(self):
+        db.order_by()
 
 @app.route('/',methods=['POST','GET'])
 def index():
-    if request.method=='POST':  
+    if request.method=='POST':
         task_content =request.form['content']
         new_task=Todo(content=task_content)
         try:
@@ -51,7 +53,7 @@ def update(id):
 
     if request.method == 'POST':
         task.content = request.form['content']
-
+        task.content = request.form['priority']
         try:
             db.session.commit()
             return redirect('/')
